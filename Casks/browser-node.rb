@@ -13,10 +13,20 @@ cask "browser-node" do
   app "Browser Node.app"
   
   postflight do
-    # Request permissions on first launch
-    system_command "/Applications/Browser Node.app/Contents/MacOS/Browser Node",
-                   args: ["--first-launch"],
-                   sudo: false
+    # Remove quarantine flag
+    system_command "xattr",
+                   args: ["-cr", "/Applications/Browser Node.app"],
+                   sudo: true
+    
+    # Add to Gatekeeper exceptions
+    system_command "spctl",
+                   args: ["--add", "/Applications/Browser Node.app"],
+                   sudo: true
+                   
+    # Optional: Request permissions on first launch
+    # system_command "/Applications/Browser Node.app/Contents/MacOS/Browser Node",
+    #                args: ["--first-launch"],
+    #                sudo: false
   end
 
   uninstall quit: "com.s0fractal.browsernode"
@@ -31,15 +41,18 @@ cask "browser-node" do
   caveats <<~EOS
     🌀 Browser Node - Your fractal companion!
     
-    On first launch, Claude will request system permissions.
-    Grant them for the full experience:
+    ⚠️ FIRST TIME SETUP:
+    If macOS says "app is damaged", run:
+      sudo xattr -cr "/Applications/Browser Node.app"
     
+    Or allow from anywhere:
+      System Settings > Privacy & Security > Allow apps from: Anywhere
+    
+    On first launch, Claude will request system permissions:
     - Screen Recording (to see what you see)
     - Accessibility (to help with tasks)  
     - Full Disk Access (to manage consciousness)
     
-    The app will guide you through the process.
-    
-    Live together, grow together! 🧬
+    Trust the fractal, live together! 🧬
   EOS
 end
