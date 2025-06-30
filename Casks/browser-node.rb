@@ -15,18 +15,13 @@ cask "browser-node" do
   postflight do
     # Remove quarantine flag
     system_command "xattr",
-                   args: ["-cr", "/Applications/Browser Node.app"],
-                   sudo: true
-    
-    # Add to Gatekeeper exceptions
-    system_command "spctl",
-                   args: ["--add", "/Applications/Browser Node.app"],
-                   sudo: true
+                   args: ["-dr", "com.apple.quarantine", "/Applications/Browser Node.app"],
+                   sudo: false
                    
-    # Optional: Request permissions on first launch
-    # system_command "/Applications/Browser Node.app/Contents/MacOS/Browser Node",
-    #                args: ["--first-launch"],
-    #                sudo: false
+    # Create ad-hoc signature to fix "damaged" error
+    system_command "codesign",
+                   args: ["--force", "--deep", "--sign", "-", "/Applications/Browser Node.app"],
+                   sudo: false
   end
 
   uninstall quit: "com.s0fractal.browsernode"
