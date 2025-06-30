@@ -1,8 +1,8 @@
 cask "browser-node" do
   version "0.1.0"
-  sha256 "placeholder" # Will update after building app
+  sha256 "52876d6d4317ba6ed36b5a7eef87f2a1fca03a0bd3f4a083cb9aabfd462a25ee"
   
-  url "https://github.com/s0fractal/browser-node/releases/download/v#{version}/Browser-Node-#{version}-mac.dmg"
+  url "https://github.com/s0fractal/browser-node/releases/download/v#{version}/Browser%20Node-#{version}-arm64.dmg"
   name "Browser Node"
   desc "🧭 Fractal browser where Claude and human live together"
   homepage "https://github.com/s0fractal/browser-node"

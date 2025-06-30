@@ -2,7 +2,7 @@ class BrowserNode < Formula
   desc "🧭 Fractal browser where Claude and human live together"
   homepage "https://github.com/s0fractal/browser-node"
   url "https://github.com/s0fractal/browser-node/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "placeholder" # Will update after creating release
+  sha256 "83ae640ab868b80bdb43a8c79270a3b2d4d6f66c379401c58d8e471e2ea9ec7b"
   license "MIT"
 
   depends_on "node"
